@@ -25,7 +25,9 @@ jobs:
           distribution: 'zulu'
 
       - name: Grant execute permission for gradlew
-        working-directory: /
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradlew
         run: ./gradlew build
 
       - name: Docker build
