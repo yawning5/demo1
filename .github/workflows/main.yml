@@ -25,7 +25,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Grant execute permission for gradlew
-        working-directory: ./pra
+        working-directory: /
         run: ./gradlew build
 
       - name: Docker build
