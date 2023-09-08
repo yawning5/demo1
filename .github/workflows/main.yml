@@ -32,11 +32,10 @@ jobs:
 
       - name: Docker build
         run: |
-          echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+          docker login -u ${{secrets.DOCKER_HUB_USERNAME}} -p ${{secrets.DOCKER_HUB_PASSWORD}}
           docker build -t spring-cicd .
-          docker tag spring-cicd ${{ secrets.DOCKER_HUB_USERNAME }}/spring-cicd:${{ github.sha::7 }}
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/spring-cicd:${{ github.sha::7 }}
-
+          docker tag spring-cicd ${{secrets.DOCKER_HUB_USERNAME}}/spring-cicd:${GITHUB_SHA::7}
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/spring-cicd:${GITHUB_SHA::7}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
